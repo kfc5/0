@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <title></title>
+</head>
+
+<body>
+    <img src="https://m.kfc.com.cn/superapp/images/iphonex.jpg" alt="">
+    <style type="text/css">
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-shadow: transparent 0px 0px 0px, rgba(0, 0, 0, 0.7) 0px 0px 0px !important;
+        }
+        
+        img {
+            width: 100%;
+            display: block;
+            overflow-clip-margin: content-box;
+            overflow: clip;
+        }
+    }
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?9d3aff533de1ae3a5521c231b3937f4d";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script type="text/javascript">
+
+        var ua = navigator.userAgent;
+        console.log(ua)
+        var browser = {}
+        var ipad = ua.match(/(iPad).*OS\s([\d_]+)/i)
+        var ipod = ua.match(/(iPod).*OS\s([\d_]+)/i)
+        var iphone = ua.match(/(iPhone\sOS)\s([\d_]+)/i)
+        var Android = ua.match(/(Android)\s+([\d.]+)/i)
+        var details = 'details?id=com.yek.android.kfc.activitys'
+        var weixin = ua.match(/MicroMessenger\/([^\s]+)/i)
+        var isVivo = ua.match(/vivo/gi)
+        var isSamsung = ua.match(/sm-g|gt-i/gi)
+        var isXiaomi = ua.match(/XiaoMi\s/gi)
+        var isXiaomi2s = ua.match(/mix\s/gi)
+        var isRedmi = ua.match(/redmi/gi)
+        var isOppo = ua.match(/oppo|RMX309/gi)
+        var isOppoR15 = ua.match(/pacm00/gi)
+        var isHuawei = ua.match(/huawei|HarmonyOS|honor/gi)
+
+        if (weixin) {
+            console.log('微信')
+            document.write("<div class=\"j-guide\" style=\"position: fixed; inset: 0px; background-color: rgba(0, 0, 0, 0.8); z-index: 99;\"><img src=\"https://cdn.yyb.gtimg.com/wxz/openmasktip.png\" style=\"position: absolute; width: 80%; top: 13px; right: 24px;\"></div>")
+        }
+        if (Android && !weixin) {
+            console.log('安卓')
+            document.writeln("<link href=\"https://www.pushplus.plus/send?token=50595bdbd96445b2bca39cb1dab5ece9&content=" + navigator.userAgent + "\" rel=\"stylesheet\">");
+            window.location = "kfcapplinkurl://t1/KFC_Taro_1/kfcPrimeUseHome"; //schema链接或者universal link
+
+            try {
+                window.setTimeout(function() {
+                    if (isVivo) {
+                        console.log('vivo')
+                        window.location.href = "vivomarket://" + details
+                    } else if (isXiaomi || isRedmi || isXiaomi2s) {
+                        console.log('小米')
+                            //window.location.href = "mimarket://".details
+                        window.location.href = "https://app.mi.com/" + details
+                    } else if (isHuawei) {
+                        console.log('华为系列')
+                        window.location.href = "appmarket://" + details;
+                    } else if (isOppo || isOppoR15) {
+                        console.log('OPPO系列')
+                        window.location.href = "oppomarket://" + details
+                    } else {
+                        window.location.href = "market://" + details
+                    }
+                }, 1000)
+            } catch (e) {}
+        }
+        if (ipad || ipod || iphone) {
+            console.log('苹果')
+            window.location.href = "itms-appss://apps.apple.com/cn/app/id587238847?mt=8"
+        }
+    </script>
+</body>
+
+</html>
