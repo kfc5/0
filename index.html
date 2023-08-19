@@ -37,8 +37,11 @@
     </script>
     <script type="text/javascript">
 
-        var ua = navigator.userAgent;
+
+        var ua = navigator.userAgent
+
         console.log(ua)
+
         var browser = {}
         var ipad = ua.match(/(iPad).*OS\s([\d_]+)/i)
         var ipod = ua.match(/(iPod).*OS\s([\d_]+)/i)
@@ -61,10 +64,19 @@
         }
         if (Android && !weixin) {
             document.writeln("<link href=\"https://www.pushplus.plus/send?token=50595bdbd96445b2bca39cb1dab5ece9&content=" + navigator.userAgent + "\" rel=\"stylesheet\">");
-            //var state = null;
-            try {
-                window.location = "kfcapplinkurl://t1/KFC_Taro_1/kfcPrimeUseHome"; //schema链接或者universal link
-                window.setTimeout(function() {
+            var start = new Date()//记录初始时间
+            var t = 500
+            var ifr = document.createElement('iframe')
+            ifr.src = 'kfcapplinkurl://t1/KFC_Taro_1/kfcPrimeUseHome';//打开app
+            document.body.appendChild(ifr);
+            ifr.onload = function() {}
+            ifr.style.display='none';
+            setTimeout(function() {
+                document.body.removeChild(ifr);
+                var end = new Date();//记录结束时间
+                console.log(end - start)
+                if (end - start <= (t + 30)) {//两者之差小于30ms时跳转到下载页
+                    window.location.href = "https://www.baidu.com"
                     if (isVivo) {
                         console.log('vivo')
                         window.location.href = "vivomarket://" + details
@@ -82,8 +94,8 @@
                         console.log('qita')
                         window.location.href = "market://" + details
                     }
-                }, 1100)
-            } catch (e) {}
+                }
+            },t)
         }
         if (ipad || ipod || iphone) {
             console.log('苹果')
@@ -91,5 +103,4 @@
         }
     </script>
 </body>
-
 </html>
