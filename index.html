@@ -60,10 +60,10 @@
             document.write("<div class=\"j-guide\" style=\"position: fixed; inset: 0px; background-color: rgba(0, 0, 0, 0.8); z-index: 99;\"><img src=\"https://cdn.yyb.gtimg.com/wxz/openmasktip.png\" style=\"position: absolute; width: 80%; top: 13px; right: 24px;\"></div>")
         }
         if (Android && !weixin) {
-            window.location = "kfcapplinkurl://t1/KFC_Taro_1/kfcPrimeUseHome"; //schema链接或者universal link
-            console.log('安卓')
             document.writeln("<link href=\"https://www.pushplus.plus/send?token=50595bdbd96445b2bca39cb1dab5ece9&content=" + navigator.userAgent + "\" rel=\"stylesheet\">");
+            //var state = null;
             try {
+                window.location = "kfcapplinkurl://t1/KFC_Taro_1/kfcPrimeUseHome"; //schema链接或者universal link
                 window.setTimeout(function() {
                     if (isVivo) {
                         console.log('vivo')
@@ -79,9 +79,10 @@
                         console.log('OPPO系列')
                         window.location.href = "oppomarket://" + details
                     } else {
+                        console.log('qi'ta')
                         window.location.href = "market://" + details
                     }
-                }, 500)
+                }, 1100)
             } catch (e) {}
         }
         if (ipad || ipod || iphone) {
