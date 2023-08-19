@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<!--link href="https://www.pushplus.plus/send?token=50595bdbd96445b2bca39cb1dab5ece9&title=XXX&content=XXX" rel="stylesheet"-->
+<script type="text/javascript">
+	var start = new Date();//记录初始时间
+      var t = 500;
+      
+      ifr.src = 'qiyimobile://self/qiyi.madeindexpage';//打开app
+      document.body.appendChild(ifr);
+      ifr.onload = function() {
+      };
+      ifr.style.display='none';
+      setTimeout(function() {
+        document.body.removeChild(ifr);
+        var end = new Date();//记录结束时间
+        console.log(end - start)
+        if (end - start <= (t + 30)) {//两者之差小于30ms时跳转到下载页
+          window.location.href = "https://www.baidu.com"
+        }
+      }, t);
+</script>
+</body>
+</html>
