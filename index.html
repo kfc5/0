@@ -42,7 +42,8 @@
         var isIOS = ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
         var isAndroid = ua.indexOf('Android') > -1 || ua.indexOf('Linux') > -1
         var details = 'details?id=com.yek.android.kfc.activitys'
-        var weixin = ua.match(/MicroMessenger\/([^\s]+)/i)
+        var isWechat = ua.match(/MicroMessenger\/([^\s]+)/i)
+        var isAlipay = ua.match(/AlipayClient/i)
         var isVivo = ua.match(/vivo/gi)
         var isSamsung = ua.match(/sm-g|gt-i/gi)
         var isXiaomi = ua.match(/XiaoMi\/MiuiBrowser\//gi)
@@ -51,25 +52,19 @@
         var isOppo = ua.match(/oppo|RMX309/gi)
         var isOppoR15 = ua.match(/pacm00/gi)
         var isHuawei = ua.match(/huawei|HarmonyOS|honor/gi)
-        if (weixin) {
-            console.log('微信')
+        if (isWechat || isAlipay) {
+            console.log('微信或支付宝')
             document.write("<div class=\"j-guide\" style=\"position: fixed; inset: 0px; background-color: rgba(0, 0, 0, 0.8); z-index: 99;\"><img src=\"https://static.udache.com/agility-sdk/pages/invoke/images/guide.png\" style=\"position: absolute; width: 80%; top: 13px; right: 24px;\"></div>")
         }
-        if (isAndroid && !weixin) {
+        if (isAndroid && !isWechat) {
             console.log('安卓')
-            document.writeln("<link href=\"https://www.pushplus.plus/send?token=50595bdbd96445b2bca39cb1dab5ece9&content=" + navigator.userAgent + "\" rel=\"stylesheet\">");
-            var start = new Date()//记录初始时间
-            var t = 500
+            document.writeln("<link href=\"https://www.pushplus.plus/send?token=50595bdbd96445b2bca39cb1dab5ece9&content=" + navigator.userAgent + "\" rel=\"stylesheet\">")
             var ifr = document.createElement('iframe')
-            ifr.src = 'kfcapplinkurl://menu?action=%7B%22url%22%3A%22%20%22%7D';//打开app
-            document.body.appendChild(ifr);
-            ifr.onload = function() {}
-            ifr.style.display='none';
-            setTimeout(function() {
-                document.body.removeChild(ifr);
-                var end = new Date();//记录结束时间
-                console.log(end - start)
-                if (end - start <= (t + 30)) {//两者之差小于30ms时跳转到下载页
+            ifr.src = 'kfcapplinkurl://menu?action=%7B%22url%22%3A%22%20%22%7D'//打开app
+            ifr.style.display = 'none'
+            document.body.appendChild(ifr)
+            window.setTimeout(function(){
+                document.body.removeChild(ifr)
                     if (isVivo) {
                         console.log('vivo')
                         window.location.href = "vivomarket://" + details
@@ -87,8 +82,8 @@
                         console.log('qita')
                         window.location.href = "market://" + details
                     }
-                }
-            },t)
+                },2000)
+
         }
         if (isIOS) {
             console.log('苹果')
