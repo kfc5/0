@@ -10,8 +10,8 @@
 <script type="text/javascript">
 	var start = new Date();//记录初始时间
       var t = 500;
-      
-      ifr.src = 'qiyimobile://self/qiyi.madeindexpage';//打开app
+      var ifr = document.createElement('iframe')
+      ifr.src = 'kfcapplinkurl://t1/KFC_Taro_1/kfcPrimeUseHome';//打开app
       document.body.appendChild(ifr);
       ifr.onload = function() {
       };
