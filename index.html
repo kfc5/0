@@ -61,7 +61,7 @@
             var start = new Date()//记录初始时间
             var t = 500
             var ifr = document.createElement('iframe')
-            ifr.src = 'kfcapplinkurl://t1/KFC_Taro_1/kfcPrimeUseHome';//打开app
+            ifr.src = 'kfcapplinkurl://menu?action=%7B%22url%22%3A%22%20%22%7D';//打开app
             document.body.appendChild(ifr);
             ifr.onload = function() {}
             ifr.style.display='none';
