@@ -6,24 +6,16 @@
 	<title></title>
 </head>
 <body>
-<!--link href="https://www.pushplus.plus/send?token=50595bdbd96445b2bca39cb1dab5ece9&title=XXX&content=XXX" rel="stylesheet"-->
-<script type="text/javascript">
-	var start = new Date();//记录初始时间
-      var t = 500;
-      var ifr = document.createElement('iframe')
-      ifr.src = 'kfcapplinkurl://t1/KFC_Taro_1/kfcPrimeUseHome';//打开app
+  <script type="text/javascript">
+var time = Date.now();
+      var ifr = document.createElement("iframe");
+      ifr.setAttribute('src', 'kfcapplinkurl://t1/KFC_Taro_1/kfcPrimeUseHome');
+      ifr.setAttribute('style', 'display:none');
       document.body.appendChild(ifr);
-      ifr.onload = function() {
-      };
-      ifr.style.display='none';
-      setTimeout(function() {
-        document.body.removeChild(ifr);
-        var end = new Date();//记录结束时间
-        console.log(end - start)
-        if (end - start <= (t + 30)) {//两者之差小于30ms时跳转到下载页
-          window.location.href = "https://www.baidu.com"
-        }
-      }, t);
-</script>
+      
+      timeout = setTimeout(function(){
+        // downApp(time,index);
+      },timer);
+  </script>
 </body>
 </html>
